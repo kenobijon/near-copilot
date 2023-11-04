@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ---balck: */
+
+    --background: 235, 11%, 23%;
+    /* #343541 */
+    --foreground: 240, 15%, 87%;
+    /* #D9D9E3 */
+
+    --assistant-background: 229, 11%, 30%;
+    /* #D9D9E3 */
+    --assistant-forground: 240, 5%, 84%;
+    /* #D1D4DA */
+
+    --human-background: 235, 11%, 23%;
+    /* #343541 */
+    --human-forground: 230, 6%, 81%;
+    /* #CCCDD2 */
+
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+
+    --primary: 261, 66%, 56%;
+    /* #7B47D9 */
+    --primary-dark: 266, 83%, 7%;
+    /* #100321 */
+    --primary-foreground: 120, 100%, 100%;
+    /* #FEFFFE */
+
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 20% 98%;
+
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 210 20% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+
+    --ring: 215 27.9% 16.9%;
+
+    --webpilot-theme-main-text-color: #FFFFF;
+    --webpilot-theme-stoke-and-hover-status: #FFFFF;
+  }
+}
+
+/* Outline 3 Colors
+  1. Assistant Text Color #D4D4D8
+  2. Human text color #CCCDD2
+  3. Human background #343541
+  4. Assistant background #444755
+  5. Chatbot background #343541
+  6. Chatbot forground color #D9D9E3
+*/
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    /* @apply bg-gradient-to-b from-[#100321] via-[#090213] to-[#050107] from-0% via-40% to-90% text-foreground; */
+    @apply bg-background text-foreground;
+  }
+
+  .content_width {
+    @apply w-full sm:w-[90%] md:w-[80%] lg:w-[50%] shadow-sm;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa;
+}
+
+::-webkit-scrollbar-track:hover {
+  background-color: #f2f2f2;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+@media (max-width: 768px) {
+  pre {
+    width: calc(100vw - 110px);
+  }
+}
+
+pre:has(div.codeblock) {
+  padding: 0;
+}
+
+/* Define a custom class for the parent */
+.link-hover:hover .link-index {
+  /* Change text color on hover */
+  color: #2563eb;
+  /* This is Tailwind's blue-600 color */
+}
+
+.link-hover:hover .link-name {
+  /* Change text color on hover */
+  color: #2563eb;
+  /* This is Tailwind's blue-600 color */
+  font-weight: bold;
+  /* This makes the font bold */
+}
+
+/* Add this class in your CSS file */
+.inline-code {
+  background-color: rgba(255, 165, 0, 0.1);
+  /* Light orange background */
+  border: 1px solid rgba(255, 165, 0, 0.4);
+  /* Thin orange border */
+  color: #ff7f50;
+  /* Coral color text for high readability */
+  padding: 2px 4px;
+  /* Small padding around the text */
+  border-radius: 4px;
+  /* Slightly rounded corners for the border */
+  font-family: monospace;
+  /* Monospaced font for code */
+  font-weight: 100;
+}
+
+/* No need this style its extra */
+/* .markdown-link {
+  color: rgb(45, 74, 203);
+} */
