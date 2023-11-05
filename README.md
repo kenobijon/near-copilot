@@ -1,8 +1,6 @@
-# Mendable Chatbot with Next.js (Starter Template)
+# NEAR Founder Co-Pilot
 
-This is a sample project to demonstrate how to use Mendable API to build your own custom chatbot interface. Made with [Mendable](https://mendable.ai?ref=nextjs), [Next.js](https://vercel.com/solutions/nextjs), [Vercel AI SDK](https://vercel.com/blog/introducing-the-vercel-ai-sdk) and [shadcn/ui](https://ui.shadcn.com/).
-
-![](/public/readmeHero.png)
+Founder Co-Pilot is a chatbot created for founder and developer support building on NEAR!
 
 ## Getting Started
 
@@ -11,6 +9,7 @@ First, create a Mendable account at [https://mendable.ai](https://mendable.ai), 
 Add your .env file with your Mendable API key:
 
 ```bash
+NEXT_PUBLIC_MENDABLE_BASE_URL = https://api.mendable.ai/v0/
 MENDABLE_API_KEY=YOUR_MENDABLE_API_KEY
 ```
 
@@ -19,8 +18,6 @@ Then, install the dependencies:
 ```bash
 npm install
 ```
-
-
 
 Run the development server:
 

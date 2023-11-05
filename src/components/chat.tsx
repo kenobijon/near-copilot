@@ -18,37 +18,29 @@ import Bubble from "./chat/bubble";
 import { conversationhistory } from "@/mock/conversationHistory";
 import { IconSend } from "@tabler/icons-react";
 
-// const localMessages: string = localStorage.getItem("messages") || "[]";
-// const initialMessages: Message[] = JSON.parse(localMessages).map(
-//   (obj: any) => obj as Message
-// );
-
-// const cacheMessage = (message: Message) => {
-//   const localMessages: string = localStorage.getItem("messages") || "[]";
-//   const parsedMessages: Message[] = JSON.parse(localMessages).map(
-//     (obj: any) => obj as Message
-//   );
-
-//   parsedMessages.push(message);
-//   localStorage.setItem("messages", JSON.stringify(parsedMessages));
-// };
 export default function Chat() {
-  let { messages, input, handleInputChange, handleSubmit, isLoading } =
-    useChat();
-  // { initialMessages, onFinish: cacheMessage } // include this in useChat
+  let {
+    messages,
+    input,
+    handleInputChange,
+    handleSubmit,
+    isLoading,
+    setMessages,
+  } = useChat();
 
-  useEffect(() => {});
+  useEffect(() => {
+    const localMessages: string = localStorage.getItem("messages") || "[]";
+    const initialMessages = JSON.parse(localMessages).map(
+      (obj: any) => obj as Message
+    );
+    setMessages(initialMessages);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("messages", JSON.stringify(messages));
+  }, [messages]);
 
   // messages = [...conversationhistory.messages, ...messages];
-
-  // const handleInputSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //   cacheMessage({
-  //     content: input,
-  //     role: "user",
-  //     id: `${Math.random()}`,
-  //   });
-  //   handleSubmit(e);
-  // };
 
   // Create a reference to the scroll area
   const scrollAreaRef = useRef<null | HTMLDivElement>(null);
@@ -95,6 +87,14 @@ export default function Chat() {
               {messages.map((message, i) => (
                 <Bubble key={i} message={{ ...message }} loading={isLoading} />
               ))}
+
+              {isLoading && messages[messages.length - 1].role === "user" && (
+                <Bubble
+                  key={"i"}
+                  message={{ id: "loading", content: "", role: "assistant" }}
+                  loading={isLoading}
+                />
+              )}
             </ScrollArea>
           </ChatContent>
         </>

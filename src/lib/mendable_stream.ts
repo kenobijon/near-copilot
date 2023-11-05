@@ -33,7 +33,13 @@ function parseMendableStream(callbacks?: MendableStreamCallbacks): (data: string
     } else if (chunk === '<|message_id|>') {
       let response_message_id = parsedData.metadata
       console.debug("MSG ID: ", response_message_id);
-      return toMarkdownNumberedList(sourcesChunk);
+      // #return response_message_id;
+
+      let s = toMarkdownNumberedList(sourcesChunk);
+      let id = (response_message_id.toString());
+
+      let end_chunk = id + s;
+      return end_chunk;
     }
     else {
       return chunk;
