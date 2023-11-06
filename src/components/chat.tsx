@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, FC } from 'react';
 
 import {
   ChatContainer,
@@ -18,7 +18,12 @@ import Bubble from "./chat/bubble";
 import { conversationhistory } from "@/mock/conversationHistory";
 import { IconSend } from "@tabler/icons-react";
 
-export default function Chat() {
+interface ChatProps {
+  index: number;
+  isActive: boolean;
+}
+
+const Chat: FC<ChatProps> = ({ index, isActive }) => {
   let {
     messages,
     input,
@@ -58,6 +63,11 @@ export default function Chat() {
   interface Message {
     role: "function" | "user" | "assistant" | "system";
     content: string;
+  }
+
+  // Only render the chat interface if this Chat is active
+  if (!isActive) {
+    return null;
   }
 
   return (
@@ -114,11 +124,10 @@ export default function Chat() {
             />
             <button
               type={`${!isLoading ? "submit" : "button"}`}
-              className={`mr-2 rounded p-1.5 opacity-60 text-white ${
-                !isLoading
-                  ? " hover:bg-gray-500 hover:text-white/80"
-                  : "pointer-events-none"
-              } `}
+              className={`mr-2 rounded p-1.5 opacity-60 text-white ${!isLoading
+                ? " hover:bg-gray-500 hover:text-white/80"
+                : "pointer-events-none"
+                } `}
             >
               {isLoading ? (
                 <Grid
@@ -139,3 +148,5 @@ export default function Chat() {
     </ChatContainer>
   );
 }
+
+export default Chat;

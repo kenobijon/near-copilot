@@ -1,5 +1,8 @@
 "use client";
 import Chat from "@/components/chat";
+import Sidebar from '@/components/sidebar'; // Adjust the import path as necessary
+import React, { useState } from 'react';
+
 import ReactMarkdown from "react-markdown";
 
 export default function Home() {
@@ -53,12 +56,53 @@ export default function Home() {
       role: "assistant",
     },
   ];
+
+  interface ChatMessage {
+    content: string;
+    role: string;
+    id: string;
+    createdAt?: string;
+  }
+
+  interface ChatSession {
+    messages: ChatMessage[];
+  }
+
+  const [chats, setChats] = useState<ChatSession[]>([{
+    messages: [], // Start with an empty chat
+  }]);
+
+  const [activeChatIndex, setActiveChatIndex] = useState<number>(0);
+
+  const setActiveChat = (index: number) => {
+    setActiveChatIndex(index);
+  };
+
+  const handleSendMessage = (message: ChatMessage, chatIndex: number) => {
+    const updatedChats = [...chats];
+    updatedChats[chatIndex].messages.push(message);
+    setChats(updatedChats);
+  };
+
+  const addNewChat = () => {
+    const newChat: ChatSession = {
+      messages: [], // Initialize a new chat with no messages
+    };
+    const updatedChats = [...chats, newChat];
+    setChats(updatedChats);
+    setActiveChatIndex(updatedChats.length - 1); // Automatically switch to the new chat
+  };
+
+
   return (
-    <div className="w-full h-screen min-h-screen items-center justify-center">
-      {/* {messages.map((message, i) => {
-        return <ReactMarkdown key={i} children={message.content} />;
-      })} */}
-      <Chat />
+    <div className="flex w-full h-screen min-h-screen">
+      <Sidebar onNewChat={addNewChat} setActiveChat={setActiveChat} chats={chats} />
+      <div className="flex-grow flex flex-col items-center justify-center">
+        <Chat
+          index={activeChatIndex}
+          isActive={true} // The shown chat is always active
+        />
+      </div>
     </div>
   );
 }

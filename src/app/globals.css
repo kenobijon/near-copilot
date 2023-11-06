@@ -152,3 +152,60 @@ pre:has(div.codeblock) {
 /* .markdown-link {
   color: rgb(45, 74, 203);
 } */
+
+
+/* styles.css */
+.sidebar {
+  width: 250px;
+  /* Adjust width as needed */
+  height: 100vh;
+  /* Full height */
+  border-right: 1px solid #ccc;
+  /* Thin gray line */
+  padding: 20px;
+  /* Padding inside the sidebar */
+  /* Further styles as needed */
+}
+
+/* styles.css */
+.new-chat-btn {
+  /* Styling for your new chat button */
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+/* Sidebar styling */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.chat-box {
+  margin-bottom: 20px; /* Increase the bottom margin for more vertical space */
+  border: 1px solid #ccc; /* Add a border to each chat box */
+  padding: 10px; /* Add some padding inside the chat box */
+  border-radius: 5px; /* Optional: round the corners of the chat box */
+  background-color: #f9f9f9; /* Optional: set a background color for the chat box */
+}
+
+.new-chat-box {
+  margin-top: 20px; /* Add some top margin for the new chat button */
+}
+
+.chat-box button,
+.new-chat-box button {
+  width: 100%;
+  padding: 10px; /* Increase padding for the button */
+  border: none; /* Remove border from button if desired */
+  border-radius: 5px; /* Optional: round the corners of the button */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for button background */
+}
+
+.chat-box button:hover,
+.new-chat-box button:hover {
+  background-color: #e6e6e6; /* Change background color on hover */
+}
