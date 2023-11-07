@@ -28,17 +28,17 @@ export default function Chat() {
     setMessages,
   } = useChat();
 
-  useEffect(() => {
-    const localMessages: string = localStorage.getItem("messages") || "[]";
-    const initialMessages = JSON.parse(localMessages).map(
-      (obj: any) => obj as Message
-    );
-    setMessages(initialMessages);
-  }, []);
+  // useEffect(() => {
+  //   const localMessages: string = localStorage.getItem("messages") || "[]";
+  //   const initialMessages = JSON.parse(localMessages).map(
+  //     (obj: any) => obj as Message
+  //   );
+  //   setMessages(initialMessages);
+  // }, []);
 
-  useEffect(() => {
-    localStorage.setItem("messages", JSON.stringify(messages));
-  }, [messages]);
+  // useEffect(() => {
+  //   localStorage.setItem("messages", JSON.stringify(messages));
+  // }, [messages]);
 
   // messages = [...conversationhistory.messages, ...messages];
 
@@ -114,11 +114,10 @@ export default function Chat() {
             />
             <button
               type={`${!isLoading ? "submit" : "button"}`}
-              className={`mr-2 rounded p-1.5 opacity-60 text-white ${
-                !isLoading
-                  ? " hover:bg-gray-500 hover:text-white/80"
-                  : "pointer-events-none"
-              } `}
+              className={`mr-2 rounded p-1.5 opacity-60 text-white ${!isLoading
+                ? " hover:bg-gray-500 hover:text-white/80"
+                : "pointer-events-none"
+                } `}
             >
               {isLoading ? (
                 <Grid
