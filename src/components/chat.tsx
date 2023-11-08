@@ -65,7 +65,7 @@ export default function Chat() {
       {messages.length === 0 ? (
         <div className="mx-auto flex flex-grow w-[300px] flex-col mt-[15%] space-y-6 sm:w-[600px]">
           <div className="text-center text-4xl font-bold text-black dark:text-white">
-            MendableAI Chatbot
+            NEAR Founder Co-Pilot
           </div>
           <div className="text-center text-lg text-black dark:text-white">
             <div className="mb-2 font-bold">NEAR Founder Co-Pilot</div>
