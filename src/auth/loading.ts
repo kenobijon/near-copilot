@@ -13,10 +13,10 @@ export const setupSelector = () => {
         network: "mainnet",
         modules: [
             setupNearWallet({
-                successUrl: `${window.location.protocol}//${window.location.host}/success`,
+                successUrl: `${window.location.protocol}//${window.location.host}/loggedin`,
             }),
             setupMyNearWallet({
-                successUrl: `${window.location.protocol}//${window.location.host}/success`,
+                successUrl: `${window.location.protocol}//${window.location.host}/loggedin`,
             }),
             // setupHereWallet(),
             // setupMeteorWallet(),

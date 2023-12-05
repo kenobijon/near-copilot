@@ -7,7 +7,9 @@ import { User } from "@/auth/user";
 import { getIronSession } from "iron-session";
 import { cookies } from "next/headers";
 import "@near-wallet-selector/modal-ui/styles.css";
+import { Wallet } from '../components/near-wallet';
 
+const wallet = new Wallet({ createAccessKeyFor: "social.near" })
 
 const inter = Inter({ subsets: ["latin"] });
 const roboto = Roboto({

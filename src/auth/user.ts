@@ -2,17 +2,17 @@ import { z } from "zod";
 
 export const userSchema = z.union([
     z.object({
-        logedIn: z.literal(false),
+        loggedIn: z.literal(false),
     }),
     z.object({
-        logedIn: z.literal(true),
+        loggedIn: z.literal(true),
         accountId: z.string(),
         publicKey: z.string(),
         admin: z.boolean().default(false),
         hasProfile: z.literal(false),
     }),
     z.object({
-        logedIn: z.literal(true),
+        loggedIn: z.literal(true),
         accountId: z.string(),
         publicKey: z.string(),
         admin: z.boolean().default(false),
@@ -24,5 +24,5 @@ export const userSchema = z.union([
 export type User = z.infer<typeof userSchema>;
 
 export const DEFAULT_USER: User = {
-    logedIn: false,
+    loggedIn: false,
 };

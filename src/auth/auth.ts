@@ -15,32 +15,18 @@ export async function login({
         }),
     });
 
+    console.log("result", result);
+
     if (!result.ok) {
         throw new Error("Failed to login");
     }
+
+    console.log("result.json()", await result.json());
 
     const { ok } = (await result.json()) as { ok: boolean };
 
     if (!ok) {
         throw new Error("Failed to login");
-    }
-
-    return result;
-}
-
-export async function updateSession() {
-    const result = await fetch("/api/auth/login", {
-        method: "PATCH",
-    });
-
-    if (!result.ok) {
-        throw new Error("Failed to update session");
-    }
-
-    const { ok } = (await result.json()) as { ok: boolean };
-
-    if (!ok) {
-        throw new Error("Failed to update session");
     }
 
     return result;

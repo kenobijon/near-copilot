@@ -26,7 +26,7 @@ export function Providers({
 function useOnboardingRedirect(user: User) {
     const pathname = usePathname();
 
-    // if (!(pathname === "/") && !user.logedIn) {
-    //     return redirect("/");
-    // }
+    if (!(pathname === "/") && !user.loggedIn) {
+        return redirect("/");
+    }
 }

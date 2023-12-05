@@ -9,7 +9,7 @@ export const rateMessage = async ({
   const url = "https://api.mendable.ai/v0/rateMessage";
 
 
-  console.log("ACtions: ", url);
+  console.log("Actions: ", url);
   const data = {
     api_key: process.env.MENDABLE_API_KEY,
     message_id,
