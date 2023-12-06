@@ -5,28 +5,24 @@ import { useWalletSelectorEffect } from "@/auth/selector";
 import { User } from "@/auth/user";
 import { redirect, usePathname } from "next/navigation";
 
-
-
 export function Providers({
-    children,
-    user,
+  children,
+  user,
 }: {
-    children?: React.ReactNode;
-    user: User;
+  children?: React.ReactNode;
+  user: User;
 }) {
-    useWalletSelectorEffect();
-    setUser(user);
-    useOnboardingRedirect(user);
+  useWalletSelectorEffect();
+  setUser(user);
+  useOnboardingRedirect(user);
 
-    return (
-        children
-    );
+  return children;
 }
 
 function useOnboardingRedirect(user: User) {
-    const pathname = usePathname();
+  const pathname = usePathname();
 
-    if (!(pathname === "/") && !user.loggedIn) {
-        return redirect("/");
-    }
+  if (!(pathname === "/" || pathname === "/loggedin") && !user.loggedIn) {
+    return redirect("/");
+  }
 }

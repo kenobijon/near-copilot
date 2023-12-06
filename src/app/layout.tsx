@@ -1,15 +1,15 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter, Roboto, Lora, Source_Sans_3 } from "next/font/google";
+import { Inter, Lora, Roboto, Source_Sans_3 } from "next/font/google";
 import { Providers } from "./providers";
 import { ironSessionConfig } from "@/auth/iron-session";
 import { User } from "@/auth/user";
 import { getIronSession } from "iron-session";
 import { cookies } from "next/headers";
 import "@near-wallet-selector/modal-ui/styles.css";
-import { Wallet } from '../components/near-wallet';
+import { Wallet } from "../components/near-wallet";
 
-const wallet = new Wallet({ createAccessKeyFor: "social.near" })
+const wallet = new Wallet({ createAccessKeyFor: "social.near" });
 
 const inter = Inter({ subsets: ["latin"] });
 const roboto = Roboto({
@@ -30,7 +30,10 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { save, destroy, ...user } = await getIronSession<User>(cookies(), ironSessionConfig);
+  const { save, destroy, ...user } = await getIronSession<User>(
+    cookies(),
+    ironSessionConfig,
+  );
 
   return (
     <html lang="en">
