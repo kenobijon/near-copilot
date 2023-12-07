@@ -5,6 +5,8 @@ Founder Co-Pilot is a chatbot created for founder and developer support building
 ## Getting Started
 
 First, create a Mendable account at [https://mendable.ai](https://mendable.ai), ingest your data and grab your API key.
+Second, make sure you have been added to the Firebase. Use these details for API access:
+https://console.firebase.google.com/u/3/project/near-co-pilot/settings/general/web:ZWRiZWU0YjgtMzZhYy00ODViLTkwMzAtYmQ3NDA2NDA3MDRl
 
 Add your .env file with your Mendable API key and Firebase details:
 
