@@ -1,41 +1,70 @@
-
-import 'regenerator-runtime/runtime';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import Chat from "@/components/chat";
 import ReactMarkdown from "react-markdown";
-import { SignIn } from "./sign-in";
-import { Wallet } from '../components/near-wallet';
+import { SignIn } from "./sign-in"; // NEAR Wallet
+import SignUpWithEmail from "../components/firebase/signup-email";
+import SignInWithEmail from "../components/firebase/signin-email";
+import { Wallet } from "../components/near-wallet";
 
 const wallet = new Wallet({ createAccessKeyFor: "social.near" });
 
+export default function App() {
+  const [isSignedInWithNear, setIsSignedInWithNear] = useState(false);
+  const [isSignedInWithEmail, setIsSignedInWithEmail] = useState(false);
 
-export default async function App() {
-    const isSignedIn = await wallet.startUp();
+  useEffect(() => {
+    async function checkAuth() {
+      const signedIn = await wallet.startUp();
+      setIsSignedInWithNear(signedIn);
+    }
 
-    const signIn = () => { wallet.signIn() }
+    checkAuth();
+  }, []);
 
-    const signOut = () => { wallet.signOut() }
+  const signInWithWallet = () => {
+    wallet.signIn();
+  };
+  const signOutWithWallet = () => {
+    wallet.signOut();
+  };
 
-    return (
-        <main>
-            <table>
-                <tr>
-                    <td><h1>📖 NEAR Guest Book</h1></td>
-                    <td>{isSignedIn
-                        ? <button onClick={signOut}>Log out</button>
-                        : <button onClick={signIn}>Log in</button>
-                    }</td>
-                </tr>
-            </table>
+  const handleSignOutWithEmail = () => {
+    setIsSignedInWithEmail(false);
+  };
 
-            <hr />
-            {isSignedIn
-                ? <Chat />
-                : <SignIn />
+  return (
+    <main>
+      <h1>📖 NEAR Guest Book</h1>
+
+      {isSignedInWithNear || isSignedInWithEmail ? (
+        <>
+          <button
+            onClick={
+              isSignedInWithNear ? signOutWithWallet : handleSignOutWithEmail
             }
+          >
+            Log out
+          </button>
+          <Chat />
+        </>
+      ) : (
+        <>
+          <button onClick={signInWithWallet}>Log in with NEAR Wallet</button>
+        </>
+      )}
 
-        </main>
-    );
-};
-
-// export default App;
+      <SignInWithEmail
+        onSignInSuccess={(user) => {
+          console.log("User signed in:", user);
+          setIsSignedInWithEmail(true);
+        }}
+      />
+      <SignUpWithEmail
+        onSignUpSuccess={(user) => {
+          console.log("User signed in:", user);
+          setIsSignedInWithEmail(true);
+        }}
+      />
+    </main>
+  );
+}
